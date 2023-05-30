@@ -1,6 +1,17 @@
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+      routes:
+        - id: example-server
+          uri: lb://example-server
+          predicates:
+            - Path=/example-server/**
+          filters:
+            - StripPrefix=1
 server:
   port: 8080
 
@@ -9,26 +20,8 @@ eureka:
     region: default
     registryFetchIntervalSeconds: 5
 
-zuul:
-  routes:
-    base-service:
-      path: /base-service/**
-    discovery:
-      path: /discovery/**
-      sensitive-headers: Set-Cookie,Authorization
-      url: http://localhost:8761
-    server:
-      path: /server/**
-
-hystrix:
-  command:
-    base-service:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
-    discovery:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

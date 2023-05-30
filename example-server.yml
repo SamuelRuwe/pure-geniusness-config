@@ -1,6 +1,6 @@
 spring:
   application:
-    name: PureGeniusnessServer
+    name: example-server
 
 server:
   port: 8082
