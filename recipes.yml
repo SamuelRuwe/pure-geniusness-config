@@ -1,6 +1,6 @@
 spring:
   application:
-    name: example-server
+    name: recipes
 
 server:
   port: 8082

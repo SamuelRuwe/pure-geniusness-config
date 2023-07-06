@@ -6,10 +6,10 @@ spring:
       metrics:
         enabled: true
       routes:
-        - id: example-server
-          uri: lb://example-server
+        - id: recipes
+          uri: lb://recipes
           predicates:
-            - Path=/example-server/**
+            - Path=/recipes/**
           filters:
             - StripPrefix=1
 server:
